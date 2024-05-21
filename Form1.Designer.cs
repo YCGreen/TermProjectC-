@@ -57,16 +57,6 @@
             // dropdownSymbol
             // 
             this.dropdownSymbol.FormattingEnabled = true;
-            this.dropdownSymbol.Items.AddRange(new object[] {
-            "DJI",
-            "GSPC",
-            "IBM",
-            "TSLA",
-            "AAPL",
-            "GLD",
-            "ZM",
-            "VZ",
-            "MSFT"});
             this.dropdownSymbol.Location = new System.Drawing.Point(182, 12);
             this.dropdownSymbol.Name = "dropdownSymbol";
             this.dropdownSymbol.Size = new System.Drawing.Size(89, 21);
