@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buttonGD = new System.Windows.Forms.Button();
             this.dropdownSymbol = new System.Windows.Forms.ComboBox();
             this.chartPL = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -50,30 +50,30 @@
             this.buttonGD.Name = "buttonGD";
             this.buttonGD.Size = new System.Drawing.Size(82, 27);
             this.buttonGD.TabIndex = 0;
-            this.buttonGD.Text = "buttonGD";
+            this.buttonGD.Text = "Get Data\r\n";
             this.buttonGD.UseVisualStyleBackColor = true;
             this.buttonGD.Click += new System.EventHandler(this.buttonGD_Click);
             // 
             // dropdownSymbol
             // 
             this.dropdownSymbol.FormattingEnabled = true;
-            this.dropdownSymbol.Location = new System.Drawing.Point(182, 12);
+            this.dropdownSymbol.Location = new System.Drawing.Point(154, 16);
             this.dropdownSymbol.Name = "dropdownSymbol";
-            this.dropdownSymbol.Size = new System.Drawing.Size(89, 21);
+            this.dropdownSymbol.Size = new System.Drawing.Size(96, 21);
             this.dropdownSymbol.TabIndex = 1;
             // 
             // chartPL
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartPL.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartPL.Legends.Add(legend1);
-            this.chartPL.Location = new System.Drawing.Point(385, 74);
+            chartArea2.Name = "ChartArea1";
+            this.chartPL.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartPL.Legends.Add(legend2);
+            this.chartPL.Location = new System.Drawing.Point(461, 73);
             this.chartPL.Name = "chartPL";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartPL.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartPL.Series.Add(series2);
             this.chartPL.Size = new System.Drawing.Size(363, 315);
             this.chartPL.TabIndex = 6;
             this.chartPL.Text = "chart1";
@@ -89,7 +89,7 @@
             this.CumPL});
             this.dgvData.Location = new System.Drawing.Point(12, 74);
             this.dgvData.Name = "dgvData";
-            this.dgvData.Size = new System.Drawing.Size(355, 314);
+            this.dgvData.Size = new System.Drawing.Size(423, 314);
             this.dgvData.TabIndex = 3;
             // 
             // Date
@@ -125,13 +125,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(894, 450);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.chartPL);
             this.Controls.Add(this.dropdownSymbol);
             this.Controls.Add(this.buttonGD);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Portfolio Performance Analyzer";
             ((System.ComponentModel.ISupportInitialize)(this.chartPL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);

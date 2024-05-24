@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Term_Project
 {
@@ -107,12 +108,13 @@ namespace Term_Project
                 }
 
 
-                dgvData.AutoGenerateColumns = true;
+                dgvData.AutoGenerateColumns = false;
+                
                 dgvData.DataSource = dataset.Tables["Date"];
                 FillRows(dataset.Tables["Date"]);
 
                 UpdateDataGridView();
-                 UpdateChart(dataset);
+                UpdateChart(dataset);
 
             }
 
@@ -145,6 +147,7 @@ namespace Term_Project
             return tickers;
         }
 
+       
         private void UpdateDataGridView()
         {
             for (int cix = 0; cix < dgvData.Columns.Count; cix++)
@@ -156,22 +159,23 @@ namespace Term_Project
         }
         private void UpdateChart(DataSet dataset)
         {
-            chartPL.Series[0].Points.Clear();
-            var nrRows = dataset.Tables["Date"].Rows.Count;
-            double maxPr = Double.MinValue;
-            double minPr = Double.MaxValue;
-            for (int row = 1; row < nrRows; ++row)
+            chartPL.Series.Clear();
+            Series series = new Series();
+            series.Name = "Cum.\nP/L";
+            series.ChartType = SeriesChartType.Line;
+            chartPL.Series.Add(series);
+            double cumpl = 0;
+
+            for(int i = 0; i < dataset.Tables["Date"].Rows.Count; i++)
             {
-                String date = dataset.Tables["Date"].Rows[row][0].ToString();
-                DateTime dateT;
-                DateTime.TryParseExact(date, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out dateT);
-                double price = Convert.ToDouble(dataset.Tables["Date"].Rows[row][1]);
-                chartPL.Series[0].Points.AddXY(dateT, price);
-                if (Math.Abs(price) > maxPr) maxPr = price; //keep getting error on GSPC graph that
-                if (price < minPr) minPr = price;
+                DateTime dt;
+                DateTime.TryParseExact(dataset.Tables["Date"].Rows[i][0].ToString(),
+                                       "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out dt);
+                double dailypl = Convert.ToDouble(dataset.Tables["Date"].Rows[i][3]);
+                cumpl += dailypl;
+                series.Points.AddXY(dt, dailypl);
+
             }
-            chartPL.ChartAreas[0].AxisY.Maximum = Math.Ceiling(1.1 * maxPr);
-            chartPL.ChartAreas[0].AxisY.Minimum = Math.Floor(0.9 * minPr);
         }
 
 
@@ -187,17 +191,17 @@ namespace Term_Project
                 String quantity = dataTable.Rows[dtrow][1].ToString();
                 String value = dataTable.Rows[dtrow][2].ToString();
                 Double dailypl = Convert.ToDouble(dataTable.Rows[dtrow][3]);
-                
+              
                 cumpl += dailypl;
 
                 String dailyplStr = dailypl.ToString("C");
                 String cumplStr = cumpl.ToString("C");
-
+                
                 dgvData.Rows[dgvrow].Cells[0].Value = date;
                 dgvData.Rows[dgvrow].Cells[1].Value = quantity;
                 dgvData.Rows[dgvrow].Cells[2].Value = value;
                 dgvData.Rows[dgvrow].Cells[3].Value = dailyplStr;
-                dgvData.Rows[dgvrow].Cells[4].Value = cumplStr;
+                dgvData.Rows[dgvrow].Cells[4].Value = cumplStr; 
 
                 dgvrow++; 
 
